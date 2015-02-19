@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Caelan.Frameworks.Web/Caelan.Frameworks.Web.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Caelan.Frameworks.Web/UnitOfWorkController.fs">
     <Files>
       <File FileName="Caelan.Frameworks.Web/UnitOfWorkController.fs" Line="5" Column="5" />
     </Files>
