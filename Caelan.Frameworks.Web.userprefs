@@ -1,8 +1,8 @@
-﻿<Properties>
+﻿<Properties StartupItem="Caelan.Frameworks.Web/Caelan.Frameworks.Web.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="UnitOfWorkController.fs" Line="60" Column="60" />
+      <File FileName="Caelan.Frameworks.Web/UnitOfWorkController.fs" Line="5" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

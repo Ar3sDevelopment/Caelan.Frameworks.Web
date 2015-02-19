@@ -13,18 +13,21 @@ type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork a
 
     let uowCaller = UnitOfWorkCaller.UnitOfWork<'TUnitOfWork>()
 
-    interface IUnitOfWorkCaller<'TUnitOfWork> with
+    interface IUnitOfWorkCaller with
         member __.UnitOfWork<'T>(call: Func<IUnitOfWork, 'T>) = uowCaller.UnitOfWork(call)
         member __.UnitOfWork(call: Action<IUnitOfWork>) = uowCaller.UnitOfWork(call)
 
-        member this.Repository<'T, 'TRepository when 'TRepository :> IRepository>(call: Func<'TRepository, 'T>) =
-            uowCaller.Repository(call)
+        member this.CustomRepository<'T, 'TRepository when 'TRepository :> IRepository>(call: Func<'TRepository, 'T>) =
+            uowCaller.CustomRepository(call)
+
+        member this.Repository<'T, 'TEntity when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null>(call: Func<IRepository<'TEntity>, 'T>) =
+            uowCaller.Repository<'T, 'TEntity>(call)
 
         member this.Repository<'T, 'TEntity, 'TDTO when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null and 'TDTO : not struct and 'TDTO : equality and 'TDTO : null>(call: Func<IRepository<'TEntity, 'TDTO>, 'T>) =
             uowCaller.Repository<'T, 'TEntity, 'TDTO>(call)
 
         member this.RepositoryList<'TEntity, 'TDTO when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null and 'TDTO : not struct and 'TDTO : equality and 'TDTO : null>() =
-            uowCaller.RepositoryList<'TEntity, 'TDTO>() :?> seq<'TDTO>
+            uowCaller.RepositoryList<'TEntity, 'TDTO>()
 
         member this.UnitOfWorkCallSaveChanges(call: Action<IUnitOfWork>) =
             uowCaller.UnitOfWorkCallSaveChanges(call)
@@ -34,26 +37,26 @@ type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork a
         member this.TransactionSaveChanges(body: Action<IUnitOfWork>) =
             uowCaller.TransactionSaveChanges(body)
 
-    member this.UnitOfWork<'T>(call: Func<IUnitOfWork, 'T>) = (this :> IUnitOfWorkCaller<'TUnitOfWork>).UnitOfWork(call)
-    member this.UnitOfWork(call: Action<IUnitOfWork>) = (this :> IUnitOfWorkCaller<'TUnitOfWork>).UnitOfWork(call)
+    member this.UnitOfWork<'T>(call: Func<IUnitOfWork, 'T>) = (this :> IUnitOfWorkCaller).UnitOfWork(call)
+    member this.UnitOfWork(call: Action<IUnitOfWork>) = (this :> IUnitOfWorkCaller).UnitOfWork(call)
 
-    member this.Repository<'T, 'TRepository when 'TRepository :> IRepository>(call: Func<'TRepository, 'T>) =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).Repository(call)
+    member this.CustomRepository<'T, 'TRepository when 'TRepository :> IRepository>(call: Func<'TRepository, 'T>) =
+        (this :> IUnitOfWorkCaller).CustomRepository(call)
 
     member this.Repository<'T, 'TEntity, 'TDTO when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null and 'TDTO : not struct and 'TDTO : equality and 'TDTO : null>(call: Func<IRepository<'TEntity, 'TDTO>, 'T>) =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).Repository<'T, 'TEntity, 'TDTO>(call)
+        (this :> IUnitOfWorkCaller).Repository<'T, 'TEntity, 'TDTO>(call)
 
     member this.RepositoryList<'TEntity, 'TDTO when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null and 'TDTO : not struct and 'TDTO : equality and 'TDTO : null>() =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).RepositoryList()
+        (this :> IUnitOfWorkCaller).RepositoryList()
 
     member this.UnitOfWorkCallSaveChanges(call: Action<IUnitOfWork>) =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).UnitOfWorkCallSaveChanges(call)
+        (this :> IUnitOfWorkCaller).UnitOfWorkCallSaveChanges(call)
 
     member this.Transaction(body: Action<IUnitOfWork>) =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).Transaction(body)
+        (this :> IUnitOfWorkCaller).Transaction(body)
 
     member this.TransactionSaveChanges(body: Action<IUnitOfWork>) =
-        (this :> IUnitOfWorkCaller<'TUnitOfWork>).TransactionSaveChanges(body)
+        (this :> IUnitOfWorkCaller).TransactionSaveChanges(body)
 
     member __.Empty() = EmptyResult()
 
