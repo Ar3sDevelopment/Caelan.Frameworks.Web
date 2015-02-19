@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Caelan.Frameworks.Web", "Caelan.Frameworks.Web.fsproj", "{0E260D40-CAE3-4442-8063-6FC4724DB8BB}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Caelan.Frameworks.Web", "Caelan.Frameworks.Web\Caelan.Frameworks.Web.fsproj", "{0E260D40-CAE3-4442-8063-6FC4724DB8BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
