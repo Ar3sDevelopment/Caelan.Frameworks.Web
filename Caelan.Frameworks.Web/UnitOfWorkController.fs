@@ -29,8 +29,8 @@ type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork a
         member this.RepositoryList<'TEntity, 'TDTO when 'TEntity : not struct and 'TEntity : equality and 'TEntity : null and 'TDTO : not struct and 'TDTO : equality and 'TDTO : null>() =
             uowCaller.RepositoryList<'TEntity, 'TDTO>()
 
-        member this.UnitOfWorkCallSaveChanges(call: Action<IUnitOfWork>) =
-            uowCaller.UnitOfWorkCallSaveChanges(call)
+        member this.UnitOfWorkSaveChanges(call: Action<IUnitOfWork>) =
+            uowCaller.UnitOfWorkSaveChanges(call)
 
         member this.Transaction(body: Action<IUnitOfWork>) =
             uowCaller.Transaction(body)
@@ -50,7 +50,7 @@ type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork a
         (this :> IUnitOfWorkCaller).RepositoryList()
 
     member this.UnitOfWorkCallSaveChanges(call: Action<IUnitOfWork>) =
-        (this :> IUnitOfWorkCaller).UnitOfWorkCallSaveChanges(call)
+        (this :> IUnitOfWorkCaller).UnitOfWorkSaveChanges(call)
 
     member this.Transaction(body: Action<IUnitOfWork>) =
         (this :> IUnitOfWorkCaller).Transaction(body)
