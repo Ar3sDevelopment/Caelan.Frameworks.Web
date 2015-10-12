@@ -32,10 +32,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FSharp.Core">
-      <HintPath>packages\FSharp.Core.3.1.2.1\lib\net40\FSharp.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,23 +59,29 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Caelan.DynamicLinq">
-      <HintPath>..\packages\Caelan.DynamicLinq.1.2.0\lib\Caelan.DynamicLinq.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Caelan.Frameworks.BIZ">
-      <HintPath>..\packages\Caelan.Frameworks.BIZ.3.1.0.83\lib\net45\Caelan.Frameworks.BIZ.dll</HintPath>
-    </Reference>
-    <Reference Include="Caelan.Frameworks.Common">
-      <HintPath>..\packages\Caelan.Frameworks.Common.3.1.0.118\lib\net45\Caelan.Frameworks.Common.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Caelan.Frameworks.BIZ">
+      <HintPath>..\packages\Caelan.Frameworks.BIZ.3.2.0.107\lib\net45\Caelan.Frameworks.BIZ.dll</HintPath>
+    </Reference>
+    <Reference Include="Caelan.Frameworks.Common">
+      <HintPath>..\packages\Caelan.Frameworks.Common.3.1.0.131\lib\net45\Caelan.Frameworks.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Caelan.DynamicLinq">
+      <HintPath>..\packages\Caelan.DynamicLinq.2.0.20.0\lib\net40\Caelan.DynamicLinq.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
