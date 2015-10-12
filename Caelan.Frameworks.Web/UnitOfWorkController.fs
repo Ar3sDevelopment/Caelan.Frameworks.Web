@@ -7,6 +7,16 @@ open System.Web.Mvc
 open Caelan.Frameworks.BIZ.Interfaces
 open Caelan.Frameworks.BIZ.Classes
 
+type ICRUDController<'TModel, 'TKey when 'TKey : equality> =
+    abstract member Index : unit -> ActionResult
+    abstract member Detail : 'TKey -> ActionResult
+    abstract member Edit : 'TKey -> ActionResult
+    abstract member Edit : 'TModel -> ActionResult
+    abstract member Create : unit -> ActionResult
+    abstract member Create : 'TModel -> ActionResult
+    abstract member Delete : 'TKey -> ActionResult
+    abstract member Delete : 'TModel -> ActionResult
+
 [<AbstractClass>]
 type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork and 'TUnitOfWork :> IDisposable and 'TUnitOfWork : (new : unit -> 'TUnitOfWork)>() = 
     inherit Controller()
@@ -62,6 +72,58 @@ type GenericUnitOfWorkController<'TUnitOfWork when 'TUnitOfWork :> IUnitOfWork a
 
 [<AbstractClass>]
 type UnitOfWorkController<'TContext when 'TContext :> DbContext>() =
-    class
     inherit GenericUnitOfWorkController<UnitOfWork<'TContext>>()
-    end
+
+[<AbstractClass>]
+type UnitOfWorkController<'TContext, 'TModel, 'TKey when 'TContext :> DbContext and 'TKey : equality>() =
+    inherit UnitOfWorkController<'TContext>()
+
+    interface ICRUDController<'TModel, 'TKey> with
+        member this.Index() = this.Index()
+        member this.Detail id = this.Detail id
+        member this.Edit (id: 'TKey) = this.Edit id
+        member this.Edit (model: 'TModel) = this.Edit model
+        member this.Create() = this.Create()
+        member this.Create model = this.Create model
+        member this.Delete (id: 'TKey) = this.Delete id
+        member this.Delete (model: 'TModel) = this.Delete model
+
+    abstract member Index : unit -> ActionResult
+
+    abstract member Detail : 'TKey -> ActionResult
+    abstract member Edit : 'TKey -> ActionResult
+    [<HttpPost>]
+    abstract member Edit : 'TModel -> ActionResult
+    abstract member Create : unit -> ActionResult
+    [<HttpPost>]
+    abstract member Create : 'TModel -> ActionResult
+    abstract member Delete : 'TKey -> ActionResult
+    [<HttpPost>]
+    abstract member Delete : 'TModel -> ActionResult
+
+[<AbstractClass>]
+type GenericUnitOfWorkController<'TUnitOfWork, 'TModel, 'TKey when 'TUnitOfWork :> IUnitOfWork and 'TUnitOfWork :> IDisposable and 'TUnitOfWork : (new : unit -> 'TUnitOfWork) and 'TKey : equality>() =
+    inherit GenericUnitOfWorkController<'TUnitOfWork>()
+
+        interface ICRUDController<'TModel, 'TKey> with
+            member this.Index() = this.Index()
+            member this.Detail id = this.Detail id
+            member this.Edit (id: 'TKey) = this.Edit id
+            member this.Edit (model: 'TModel) = this.Edit model
+            member this.Create() = this.Create()
+            member this.Create model = this.Create model
+            member this.Delete (id: 'TKey) = this.Delete id
+            member this.Delete (model: 'TModel) = this.Delete model
+
+    abstract member Index : unit -> ActionResult
+
+    abstract member Detail : 'TKey -> ActionResult
+    abstract member Edit : 'TKey -> ActionResult
+    [<HttpPost>]
+    abstract member Edit : 'TModel -> ActionResult
+    abstract member Create : unit -> ActionResult
+    [<HttpPost>]
+    abstract member Create : 'TModel -> ActionResult
+    abstract member Delete : 'TKey -> ActionResult
+    [<HttpPost>]
+    abstract member Delete : 'TModel -> ActionResult
