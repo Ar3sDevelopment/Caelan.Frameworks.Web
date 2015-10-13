@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Caelan.Frameworks.Web/Caelan.Frameworks.Web.fsproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Caelan.Frameworks.Web/UnitOfWorkController.fs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Caelan.Frameworks.Web/UnitOfWorkController.fs" Line="5" Column="5" />
+      <File FileName="Caelan.Frameworks.Web/UnitOfWorkController.fs" Line="116" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
