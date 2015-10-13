@@ -1,0 +1,6 @@
+language: csharp
+solution: Caelan.Frameworks.Web.sln
+install:
+  - nuget restore Caelan.Frameworks.Web.sln
+script:
+  - xbuild /p:Configuration=Release Caelan.Frameworks.Web.sln
