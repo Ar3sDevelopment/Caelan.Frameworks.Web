@@ -89,6 +89,7 @@
     <Compile Include="UnitOfWorkController.fs" />
     <None Include="packages.config" />
     <None Include="App.config" />
+    <Compile Include="AssemblyInfo.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
